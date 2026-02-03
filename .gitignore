@@ -1,0 +1,23 @@
+# Laravel
+/public/hot
+/public/storage
+
+# Laravel & PHP
+/node_modules
+/public/hot
+/public/storage
+/.idea
+/.vscode
+.DS_Store
+Thumbs.db
+
+# Environment (SANGAT PENTING!)
+.env
+
+# Logs
+*.log
+
+# Cache
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
