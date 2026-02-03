@@ -1,17 +1,18 @@
 <?php
-session_start();
-
-// Jika sudah login, redirect ke halaman yang sesuai dengan role
-if (isset($_SESSION['user_id'])) {
-    $role = $_SESSION['user_role'];
-    if ($role === 'admin') {
-        header('Location: admin/dashboard.php');
-    } elseif ($role === 'kasir') {
-        header('Location: kasir/dashboard.php');
-    } elseif ($role === 'user') {
-        header('Location: user/dashboard.php');
-    }
+// Periksa apakah file konfigurasi database sudah ada
+if (!file_exists('config/database.php')) {
+    // Jika belum, arahkan ke halaman instalasi
+    header('Location: install/');
     exit;
+}
+
+// Jika sudah, jalankan aplikasi seperti biasa
+require_once 'config/database.php';
+require_once 'includes/auth.php';
+
+// Cek apakah user sudah login
+if (isLoggedIn()) {
+    redirectByRole();
 }
 
 // Jika belum login, redirect ke halaman login
